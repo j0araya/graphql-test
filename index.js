@@ -1,0 +1,138 @@
+const { ApolloServer, gql } = require('apollo-server');
+
+const typeDefs = gql`
+  # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
+
+  # This "Book" type defines the queryable fields for every book in our data source.
+  
+
+  # The "Query" type is special: it lists all of the available queries that
+  # clients can execute, along with the return type for each. In this
+  # case, the "books" query returns an array of zero or more Books (defined above).
+
+  type Item {
+    id: ID!
+    name: String
+    icon: String
+    description: String
+    createdAt: String
+  }
+
+  type User {
+    id: ID!
+    name: String!
+    lastname: String!
+    description: String
+    items: [Item]
+    createdAt: String
+  }
+
+  type Query {
+    users: [User]
+    items: [Item]
+    getUser(id:ID!): User
+  }
+
+  type Mutation {
+    addItem(name: String, description: String): Item
+    addUser(name: String, description: String): Item
+  }
+`;
+
+const items = [
+  {
+    id: 1,
+    name: 'Me',
+    icon: 'far fa-user',
+    description: 'Perfil',
+  },
+  {
+    id: 2,
+    name: 'Profile',
+    icon: 'far fa-id-badge',
+    description: 'Información General',
+  },
+];
+
+const users = [
+  {
+    id: 1,
+    name: 'Jonathan',
+    lastname: 'Araya',
+    description: 'Desarrollador Web',
+  },
+  {
+    id: 2,
+    name: 'Jesus',
+    lastname: 'De Nazaret',
+    description: 'Multiplicador varios',
+  },
+  {
+    id: 3,
+    name: 'Jonathan',
+    lastname: 'Araya',
+    description: 'Desarrollador Web',
+  },
+  {
+    id: 4,
+    name: 'Jonathan',
+    lastname: 'Araya',
+    description: 'Desarrollador Web',
+  },
+  {
+    id: 5,
+    name: 'Jonathan',
+    lastname: 'Araya',
+    description: 'Desarrollador Web',
+  },
+  {
+    id: 6,
+    name: 'Jonathan',
+    lastname: 'Araya',
+    description: 'Desarrollador Web',
+  },
+  {
+    id: 7,
+    name: 'Jonathan',
+    lastname: 'Araya',
+    description: 'Desarrollador Web',
+  },
+  {
+    id: 8,
+    name: 'Jonathan',
+    lastname: 'Araya',
+    description: 'Desarrollador Web',
+  },
+];
+
+// type Mutation {
+//   addBook(title: String, author: String): Book
+// }
+
+const resolvers = {
+  Query: {
+    users: () => users,
+    items: () => items,
+    getUser: (parent, args) => users.find(u => u.id == args.id),
+  },
+  Mutation: {
+    addItem: (parent, args) => {
+      const item = {
+        description: args.description,
+        name: args.name,
+        id: items.length + 1,
+        createdAt: new Date().toISOString(),
+      }
+      items.push(item)
+      return item
+    }
+  },
+
+};
+
+const server = new ApolloServer({ typeDefs, resolvers });
+
+// The `listen` method launches a web server.
+server.listen().then(({ url }) => {
+  console.log(`🚀  Server ready at ${url}`);
+});
