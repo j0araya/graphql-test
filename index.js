@@ -130,9 +130,15 @@ const resolvers = {
 
 };
 
-const server = new ApolloServer({ typeDefs, resolvers });
-
+const { ApolloServer } = require("apollo-server");
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  engine: {
+    apiKey: "service:qwerty-graph:-0tcB8w1oz_SVmcdB2ti8Q",
+  }
+});
 // The `listen` method launches a web server.
-server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
+server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
+  console.log(`🚀 Server ready at ${url}`);
 });
