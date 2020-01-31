@@ -35,7 +35,7 @@ const typeDefs = gql`
 
   type Mutation {
     addItem(name: String, description: String): Item
-    addUser(name: String, description: String): Item
+    addUser(name: String, description: String): User
   }
 `;
 
@@ -110,7 +110,7 @@ const resolvers = {
     getUser: (parent, args) => users.find(u => u.id == args.id),
   },
   Mutation: {
-    addItem: (parent, args) => {
+    addUser: (parent, args) => {
       const item = {
         description: args.description,
         name: args.name,
