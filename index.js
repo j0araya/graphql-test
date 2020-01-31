@@ -57,9 +57,9 @@ const items = [
 const users = [
   {
     id: 1,
-    name: 'Jonathan',
+    name: 'Alan Brito Delgado',
     lastname: 'Araya',
-    description: 'Desarrollador Web',
+    description: 'Enderezador de alambres',
   },
   {
     id: 2,
@@ -69,39 +69,33 @@ const users = [
   },
   {
     id: 3,
-    name: 'Jonathan',
-    lastname: 'Araya',
-    description: 'Desarrollador Web',
+    name: 'Elba',
+    lastname: 'Surita',
+    description: 'CEO',
   },
   {
     id: 4,
-    name: 'Jonathan',
-    lastname: 'Araya',
-    description: 'Desarrollador Web',
+    name: 'Elbert',
+    lastname: 'G',
+    description: 'Influencer',
   },
   {
     id: 5,
-    name: 'Jonathan',
-    lastname: 'Araya',
-    description: 'Desarrollador Web',
-  },
-  {
-    id: 6,
-    name: 'Jonathan',
-    lastname: 'Araya',
-    description: 'Desarrollador Web',
+    name: 'Pika',
+    lastname: 'Chu',
+    description: 'Electrico',
   },
   {
     id: 7,
-    name: 'Jonathan',
-    lastname: 'Araya',
-    description: 'Desarrollador Web',
+    name: 'El mismisimo',
+    lastname: 'Albert Einstein',
+    description: '',
   },
   {
     id: 8,
-    name: 'Jonathan',
-    lastname: 'Araya',
-    description: 'Desarrollador Web',
+    name: 'Jhon',
+    lastname: 'Lemmon',
+    description: 'hey hey hey!',
   },
 ];
 
