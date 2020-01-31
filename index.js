@@ -57,8 +57,8 @@ const items = [
 const users = [
   {
     id: 1,
-    name: 'Alan Brito Delgado',
-    lastname: 'Araya',
+    name: 'Alan Brito',
+    lastname: 'Delgado',
     description: 'Enderezador de alambres',
   },
   {
