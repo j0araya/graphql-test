@@ -15,4 +15,13 @@ const resolvers = {
   ...Job.resolvers,
 };
 
-module.export = { typeDefs, resolvers };
+
+// const { gql } = require('apollo-server');
+
+// const typeDefs = gql`
+//   # Your schema will go here
+// `;
+
+// module.exports = typeDefs;
+
+// module.export = { typeDefs, resolvers };
