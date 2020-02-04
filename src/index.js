@@ -2,6 +2,8 @@ import express from 'express';
 import graphqlHTTP from 'express-graphql';
 import schema from './schema';
 import { connect } from './db';
+import path from 'path';
+import http from 'http';
 
 const app = express();
 
@@ -21,9 +23,11 @@ app.use('/graphql', graphqlHTTP({
   },
 }));
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.set('port', process.env.PORT || 3000);
 
-app.listen(3000, () => console.log('rurnning oon 3000'));
+app.listen(app.get('port'), () => console.log('rurnning oon 3000'));
 // const { ApolloServer, gql } = require('apollo-server');
 
 // const typeDefs = gql`
