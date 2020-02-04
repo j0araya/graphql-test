@@ -21,6 +21,8 @@ app.use('/graphql', graphqlHTTP({
   },
 }));
 
+app.set('port', process.env.PORT || 3000);
+
 app.listen(3000, () => console.log('rurnning oon 3000'));
 // const { ApolloServer, gql } = require('apollo-server');
 
