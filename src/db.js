@@ -10,7 +10,7 @@ export const connect = async () => {
   // const MONGO_URL = process.env.MONGO_URL || 'localhost:27017';
   // const MONGO_DB_NAME = process.env.MONGO_DB_NAME || 'graphql-test';
   
-  const MONGO_DB_NAME='graphql-test';
+  const MONGO_DB_NAME='test';
   const MONGO_URL='cluster0-2mk0o.mongodb.net';
   const MONGO_USER='qwerty0';
   const MONGO_PASSWORD='2JFgDggA9X6OuYCK';
