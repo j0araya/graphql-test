@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "build": "babel ./src -d dist --source-maps",
-    "start": "node dist/index.js",
+    "start": "npm run build && node dist/index.js",
     "serve": "node dist/index.js",
     "clean": "rm -rf dist",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/runtime": "^7.8.4",
     "apollo-server": "^2.9.14",
     "cors": "^2.8.5",
     "express": "^4.17.1",
@@ -30,6 +31,7 @@
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.8.4",
     "@babel/node": "^7.8.4",
+    "@babel/plugin-transform-runtime": "^7.8.3",
     "@babel/preset-env": "^7.8.4",
     "nodemon": "^2.0.2"
   }
