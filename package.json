@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
-  "type": "module",
   "scripts": {
     "build": "babel src -d dist --source-maps",
     "start": "node src/index.js --exec babel-node",
