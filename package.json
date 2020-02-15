@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src -d dist --source-maps",
-    "start": "nodemon src/index.js --exec babel-node",
+    "start": "./startup.sh",
     "serve": "node dist/index.js",
     "clean": "rm -rf dist",
     "test": "echo \"Error: no test specified\" && exit 1",
