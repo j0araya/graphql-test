@@ -5,12 +5,13 @@ import { connect } from './db';
 import path from 'path';
 import http from 'http';
 import mongo from 'mongoose';
-var cors = require("cors");
+import cors from 'cors';
+const PORT = process.env.PORT || 8080;
 
 const app = express();
 
 connect();
-
+app.set('port', PORT);
 app.get('/', (req, res) => {
   // res.json({ message: 'it WOrks' });
 });
@@ -32,15 +33,14 @@ app.use('/graphql', cors(), graphqlHTTP({
   },
 }));
 
-app.listen(8080, () => {
-  console.log('Server running succefully...')
+app.listen(PORT, () => {
+  console.log('Server running succefully...'. PORT)
 })
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.set('port', process.env.PORT || 3000);
 
-app.listen(app.get('port'), () => console.log('rurnning oon 3000'));
+
 // const { ApolloServer, gql } = require('apollo-server');
 
 // const typeDefs = gql`
