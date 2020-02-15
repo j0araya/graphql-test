@@ -25,11 +25,7 @@ const typeDefs = `
     name: String!
     lastname: String!
     description: String
-  }
-
-
-
-  
+  }  
 `;
 
 export default makeExecutableSchema({

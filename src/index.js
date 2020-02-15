@@ -1,27 +1,40 @@
 import express from 'express';
 import graphqlHTTP from 'express-graphql';
-import schema from './schema';
+import schema from '../schemas/schemas';
 import { connect } from './db';
 import path from 'path';
 import http from 'http';
+import mongo from 'mongoose';
+var cors = require("cors");
 
 const app = express();
 
 connect();
 
 app.get('/', (req, res) => {
-  res.json({ message: 'it WOrks' });
+  // res.json({ message: 'it WOrks' });
 });
 
 // const schema = {};
 
-app.use('/graphql', graphqlHTTP({
+
+
+mongo.connection.once('open', () => {
+  console.log('connected to database');
+})
+app.use('*', cors());
+app.use('/graphql', cors(), graphqlHTTP({
   graphiql: true,
   schema,
+  rootValue: 'global',
   context: {
     messageId: 'test',// <--- context
   },
 }));
+
+app.listen(8080, () => {
+  console.log('Server running succefully...')
+})
 
 app.use(express.static(path.join(__dirname, 'public')));
 

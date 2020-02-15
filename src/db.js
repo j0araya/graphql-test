@@ -16,7 +16,7 @@ export const connect = async () => {
   const MONGO_PASSWORD='2JFgDggA9X6OuYCK';
 
   const MONGO_CONNECTION_STRING = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_URL}/${MONGO_DB_NAME}?retryWrites=true&w=majority`;
-
+  console.log('MONGO_CONNECTION_STRING', MONGO_CONNECTION_STRING)
   try {
     await mongoose.connect(MONGO_CONNECTION_STRING, {
       useNewUrlParser: true,
