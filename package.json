@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "babel src -d dist --source-maps",
-    "start": "node --experimental-modules src/index.js --exec babel-node",
+    "start": "node --experimental-modules dist/index.js",
     "serve": "node dist/index.js",
     "clean": "rm -rf dist",
     "test": "echo \"Error: no test specified\" && exit 1",
