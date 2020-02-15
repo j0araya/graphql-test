@@ -1,6 +1,6 @@
 import express from 'express';
 import graphqlHTTP from 'express-graphql';
-import schema from '../schemas/schemas';
+import schema from './schemas/schemas';
 import { connect } from './db';
 import path from 'path';
 import http from 'http';
