@@ -1,10 +1,12 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 var _express = _interopRequireDefault(require("express"));
 
 var _expressGraphql = _interopRequireDefault(require("express-graphql"));
 
-var _schemas = _interopRequireDefault(require("../schemas/schemas"));
+var _schemas = _interopRequireDefault(require("./schemas/schemas"));
 
 var _db = require("./db");
 
@@ -15,8 +17,6 @@ var _http = _interopRequireDefault(require("http"));
 var _mongoose = _interopRequireDefault(require("mongoose"));
 
 var _cors = _interopRequireDefault(require("cors"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var PORT = process.env.PORT || 8080;
 var app = (0, _express["default"])();

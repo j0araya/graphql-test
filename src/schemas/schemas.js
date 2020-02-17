@@ -55,7 +55,7 @@ var query = new GraphQLObjectType({
         if (!users) {
           throw new Error('Error Users');
         }
-        return users
+        return users;
       }
     },
     user: {
