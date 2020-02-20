@@ -54,7 +54,7 @@ var query = new GraphQLObjectType({
     users: {
       type: new GraphQLList(userType),
       resolve: () => {
-        const users = UserModel.find().exec();
+        const users = UserModel.find().sort({ _id: -1 }).exec();
         if (!users) {
           throw new Error('Error Users');
         }
