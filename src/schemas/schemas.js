@@ -39,6 +39,9 @@ var userType = new GraphQLObjectType({
     description: {
       type: GraphQLString
     },
+    email: {
+      type: GraphQLString
+    },
     updated_date: {
       type: GraphQLDate
     }
@@ -92,6 +95,9 @@ var mutation = new GraphQLObjectType({
         description: {
           type: new GraphQLNonNull(GraphQLString)
         },
+        email: {
+          type: new GraphQLNonNull(GraphQLString)
+        },
         // published_year: {
         //   type: new GraphQLNonNull(GraphQLDate)
         // },
@@ -121,7 +127,7 @@ var mutation = new GraphQLObjectType({
         lastname: {
           type: new GraphQLNonNull(GraphQLString)
         },
-        // author: {
+        // email: {
         //   type: new GraphQLNonNull(GraphQLString)
         // },
         description: {
@@ -134,8 +140,8 @@ var mutation = new GraphQLObjectType({
         //   type: new GraphQLNonNull(GraphQLString)
         // }
       },
-      resolve: (root, { id, title, description }) => {
-        return UserModel.findByIdAndUpdate(id, { id, title, description, updated_date: new Date() }, (err) => {
+      resolve: (root, params) => {
+        return UserModel.findByIdAndUpdate(id, { ...params, updated_date: new Date() }, (err) => {
           if (err) return next(err);
         });
       }

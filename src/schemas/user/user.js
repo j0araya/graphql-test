@@ -52,6 +52,7 @@ const UserSchema = new mongoose.Schema({
   name: String,
   lastname: String,
   description: String,
+  email: String,
   birth: String,
   // published_year: { type: Number, min: 1945, max: 2019 },
   // publisher: String,
