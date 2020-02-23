@@ -22,7 +22,11 @@ import {
 import UserModel from './user/user';
 import GraphQLDate from 'graphql-date';
 
+import { PubSub, withFilter } from 'apollo-server';
 import mongoose from 'mongoose';
+
+const pubsub = new PubSub();
+const USER_ADDED = 'USER_ADDED';
 
 var userType = new GraphQLObjectType({
   name: 'user',
@@ -47,6 +51,8 @@ var userType = new GraphQLObjectType({
     }
   }),
 });
+
+const POST_ADDED = 'POST_ADDED';
 
 var query = new GraphQLObjectType({
   name: 'Query',
@@ -111,8 +117,9 @@ var mutation = new GraphQLObjectType({
         if (!newUser) {
           throw new Error('Error');
         }
+        pubsub.publish(USER_ADDED, { userCreated: newUser });
         return newUser;
-      }
+      },
     },
     updateUser: {
       type: userType,
@@ -164,4 +171,19 @@ var mutation = new GraphQLObjectType({
   }),
 });
 
-export default new GraphQLSchema({ query, mutation });
+var subscription = new GraphQLObjectType({
+  name: 'Subscription',
+  fields: {
+    onCreateUser: {
+      type: userType,
+      subscribe: () => pubsub.asyncIterator([USER_ADDED]),
+      // subscribe: withFilter(
+      //   pubsub.asyncIterator([USER_ADDED]),
+      //   (payload, variables) => {
+      //     return payload.onCreateUser.repository_name === variables.repoFullName;
+      //   }),
+    },
+  },
+});
+
+export default new GraphQLSchema({ query, mutation, subscription });
