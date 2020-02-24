@@ -29,7 +29,7 @@ const pubsub = new PubSub();
 const USER_ADDED = 'USER_ADDED';
 
 var userType = new GraphQLObjectType({
-  name: 'user',
+  name: 'User',
   fields: () => ({
     _id: {
       type: GraphQLString
