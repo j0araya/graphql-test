@@ -52,8 +52,6 @@ var userType = new GraphQLObjectType({
   }),
 });
 
-const POST_ADDED = 'POST_ADDED';
-
 var query = new GraphQLObjectType({
   name: 'Query',
   fields: () => ({
@@ -176,7 +174,7 @@ var subscription = new GraphQLObjectType({
   fields: {
     onCreateUser: {
       type: userType,
-      subscribe: () => pubsub.asyncIterator([USER_ADDED]),
+      subscribe: () => pubsub.asyncIterator(USER_ADDED),
       resolve: (payload, args, context, info) => {
         // Manipulate and return the new value
         console.log('payload', payload, args, context, info);
