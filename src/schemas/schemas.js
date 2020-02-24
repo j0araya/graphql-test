@@ -115,7 +115,7 @@ var mutation = new GraphQLObjectType({
         if (!newUser) {
           throw new Error('Error');
         }
-        pubsub.publish(USER_ADDED, { userCreated: newUser, onCreateUser: newUser  });
+        pubsub.publish(USER_ADDED, { onCreateUser: newUser  });
         return newUser;
       },
     },
@@ -171,22 +171,22 @@ var mutation = new GraphQLObjectType({
 
 var subscription = new GraphQLObjectType({
   name: 'Subscription',
-  fields: {
+  fields: () => ({
     onCreateUser: {
       type: userType,
       subscribe: () => pubsub.asyncIterator(USER_ADDED),
-      resolve: (payload, args, context, info) => {
-        // Manipulate and return the new value
-        console.log('payload', payload, args, context, info);
-        return payload;
-      },
+      // resolve: (payload, args, context, info) => {
+      //   // Manipulate and return the new value
+      //   console.log('payload', payload, args, context, info);
+      //   return payload;
+      // },
       // subscribe: withFilter(
       //   pubsub.asyncIterator([USER_ADDED]),
       //   (payload, variables) => {
       //     return payload.onCreateUser.repository_name === variables.repoFullName;
       //   }),
     },
-  },
+  }),
 });
 
 export default new GraphQLSchema({ query, mutation, subscription });
