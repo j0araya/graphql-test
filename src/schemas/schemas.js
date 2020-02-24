@@ -180,7 +180,7 @@ var subscription = new GraphQLObjectType({
       resolve: (payload, args, context, info) => {
         // Manipulate and return the new value
         console.log('payload', payload, args, context, info);
-        return payload;
+        return { payload, args, context, info };
       },
       // subscribe: withFilter(
       //   pubsub.asyncIterator([USER_ADDED]),
