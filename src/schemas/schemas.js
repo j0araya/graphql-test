@@ -21,8 +21,8 @@ import {
 } from 'graphql';
 import UserModel from './user/user';
 import GraphQLDate from 'graphql-date';
-
-import { PubSub, withFilter } from 'apollo-server';
+import { PubSub } from 'graphql-subscriptions';
+import { withFilter } from 'apollo-server';
 import mongoose from 'mongoose';
 
 const pubsub = new PubSub();
@@ -176,11 +176,11 @@ var subscription = new GraphQLObjectType({
   fields: {
     onCreateUser: {
       type: userType,
-      subscribe: () => pubsub.asyncIterator(USER_ADDED),
+      subscribe: () => pubsub.asyncIterator([USER_ADDED]),
       resolve: (payload, args, context, info) => {
         // Manipulate and return the new value
         console.log('payload', payload, args, context, info);
-        return payload.somethingChanged;
+        return payload;
       },
       // subscribe: withFilter(
       //   pubsub.asyncIterator([USER_ADDED]),
