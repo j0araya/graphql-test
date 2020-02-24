@@ -47,7 +47,7 @@ app.use('/graphql', (0, _cors["default"])(), (0, _expressGraphql["default"])({
 
   }
 }));
-app.listen(PORT, function () {
+server.listen(PORT, function () {
   new _subscriptionsTransportWs.SubscriptionServer({
     execute: _graphql.execute,
     subscribe: _graphql.subscribe,

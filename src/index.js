@@ -34,7 +34,7 @@ app.use('/graphql', cors(), graphqlHTTP({
   },
 }));
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   new SubscriptionServer({
     execute,
     subscribe,
