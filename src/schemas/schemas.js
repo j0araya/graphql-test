@@ -176,7 +176,11 @@ var subscription = new GraphQLObjectType({
   fields: {
     onCreateUser: {
       type: userType,
-      subscribe: () => pubsub.asyncIterator([USER_ADDED]),
+      subscribe: () => pubsub.asyncIterator(USER_ADDED),
+      resolve: (payload, args, context, info) => {
+        // Manipulate and return the new value
+        return payload.somethingChanged;
+      },
       // subscribe: withFilter(
       //   pubsub.asyncIterator([USER_ADDED]),
       //   (payload, variables) => {
