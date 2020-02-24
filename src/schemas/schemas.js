@@ -117,7 +117,7 @@ var mutation = new GraphQLObjectType({
         if (!newUser) {
           throw new Error('Error');
         }
-        pubsub.publish(USER_ADDED, { userCreated: newUser });
+        pubsub.publish(USER_ADDED, { userCreated: newUser, onCreateUser: newUser  });
         return newUser;
       },
     },
@@ -179,6 +179,7 @@ var subscription = new GraphQLObjectType({
       subscribe: () => pubsub.asyncIterator(USER_ADDED),
       resolve: (payload, args, context, info) => {
         // Manipulate and return the new value
+        console.log('payload', payload, args, context, info);
         return payload.somethingChanged;
       },
       // subscribe: withFilter(
